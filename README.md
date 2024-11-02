@@ -13,6 +13,10 @@ Terraform module which creates an IPsec site in the Cato Management Application 
 ## Usage
 
 ```hcl
+provider "aws" {
+  region = var.region
+}
+
 resource "aws_vpc" "main" {
   cidr_block = "10.10.16.0/20"
 }
@@ -23,7 +27,7 @@ module "ipsec-aws" {
   account_id = "xxxxxxx"
   region                        = "us-east-1"
   bgp_asn                       = 65000
-  vpc_id                        = vpc-123abc
+  vpc_id                        = "vpc-123abc"
   cgw_ip                        = "11.22.33.44"
   site_name                     = "AWS-Cato-IPSec-Site"
   site_description              = "AWS Cato IPSec Site US-East-2"
