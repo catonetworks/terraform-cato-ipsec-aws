@@ -9,10 +9,6 @@ provider "cato" {
   account_id = var.account_id
 }
 
-resource "aws_vpc" "main" {
-  cidr_block = var.native_network_range
-}
-
 # Create 2 allocated IPs in Cato, Get IDs
 
 # Create AWS resources

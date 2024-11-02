@@ -13,22 +13,29 @@ Terraform module which creates an IPsec site in the Cato Management Application 
 ## Usage
 
 ```hcl
+resource "aws_vpc" "main" {
+  cidr_block = "10.10.16.0/20"
+}
+
 module "ipsec-aws" {
   source = "catonetworks/ipsec-aws/cato"
   token = "xxxxxxx"
   account_id = "xxxxxxx"
-  vpc_id               = "vpc-abcde12345abcde"
-  instance_type        = "c5.xlarge"
-  key_pair             = "your-keypair-name-here"
-  native_network_range = "10.0.0.0/16"
-  region               = "us-east-2"
-  mgmt_eni_id          = "eni-abcde12345abcde12mgmt"
-  wan_eni_id           = "eni-abcde12345abcde123wan"
-  lan_eni_id           = "eni-abcde12345abcde123lan"
-  lan_local_ip         = "10.0.3.5"
-  site_name            = "AWS Site us-east-2"
-  site_description     = "AWS Site us-east-2"
-  site_type            = "CLOUD_DC"
+  region                        = "us-east-1"
+  bgp_asn                       = 65000
+  vpc_id                        = vpc-123abc
+  cgw_ip                        = "11.22.33.44"
+  site_name                     = "AWS-Cato-IPSec-Site"
+  site_description              = "AWS Cato IPSec Site US-East-2"
+  native_network_range          = "10.10.16.0/20"
+  primary_public_cato_ip_id     = "31511"
+  primary_private_cato_ip       = "169.1.1.1"
+  primary_private_site_ip       = "169.1.1.2"
+  secondary_public_cato_ip_id   = "31512"
+  secondary_private_cato_ip     = "169.2.1.1"
+  secondary_private_site_ip     = "169.2.1.2"
+  downstream_bw                 = 100
+  upstream_bw                   = 100
   site_location = {
     city         = "New York City"
     country_code = "US"
