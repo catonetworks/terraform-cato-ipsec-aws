@@ -1,4 +1,4 @@
-# CATO VSOCKET AWS Terraform module
+# CATO IPSec AWS Terraform module
 
 Terraform module which creates an IPsec site in the Cato Management Application (CMA), and a primary and secondary IPsec tunnel from AWS to the Cato platform.
 
