@@ -26,3 +26,12 @@ output "site_id" {
   description = "ID of the created Cato IPSec site"
   value       = cato_ipsec_site.ipsec-site.id
 }
+
+output "cato_license_site" {
+  value = var.license_id == null ? null : {
+    id           = cato_license.license[0].id
+    license_id   = cato_license.license[0].license_id
+    license_info = cato_license.license[0].license_info
+    site_id      = cato_license.license[0].site_id
+  }
+}

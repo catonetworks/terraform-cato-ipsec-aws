@@ -1,16 +1,5 @@
 
-provider "aws" {
-  region = var.region
-}
-
-provider "cato" {
-  baseurl    = var.baseurl
-  token      = var.token
-  account_id = var.account_id
-}
-
 # Create 2 allocated IPs in Cato, Get IDs
-
 # Create AWS resources
 resource "aws_customer_gateway" "cgw" {
   bgp_asn    = var.bgp_asn
@@ -75,4 +64,12 @@ resource "cato_ipsec_site" "ipsec-site" {
       ]
     }
   }
+}
+
+resource "cato_license" "license" {
+  depends_on = [cato_ipsec_site.ipsec-site]
+  count      = var.license_id == null ? 0 : 1
+  site_id    = cato_ipsec_site.ipsec-site.id
+  license_id = var.license_id
+  bw         = var.license_bw == null ? null : var.license_bw
 }
