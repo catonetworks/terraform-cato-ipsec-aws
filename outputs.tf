@@ -35,3 +35,8 @@ output "cato_license_site" {
     site_id      = cato_license.license[0].site_id
   }
 }
+
+output "vpc_id" {
+  description = "ID of the created Cato IPSec site"
+  value       = var.vpc_id == null ? aws_vpc.cato-vpc[0].id : var.vpc_id
+}

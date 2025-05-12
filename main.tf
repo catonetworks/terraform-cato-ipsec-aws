@@ -1,3 +1,10 @@
+resource "aws_vpc" "cato-vpc" {
+  count = var.vpc_id==null ? 1 : 0
+  cidr_block = var.native_network_range
+  tags = {
+    Name = "${var.site_name}-VPC"
+  }
+}
 
 # Create 2 allocated IPs in Cato, Get IDs
 # Create AWS resources
@@ -8,7 +15,7 @@ resource "aws_customer_gateway" "cgw" {
 }
 
 resource "aws_vpn_gateway" "vgw" {
-  vpc_id = var.vpc_id
+  vpc_id = var.vpc_id==null ? aws_vpc.cato-vpc[0].id : var.vpc_id
 }
 
 resource "aws_vpn_connection" "vpn_connection" {

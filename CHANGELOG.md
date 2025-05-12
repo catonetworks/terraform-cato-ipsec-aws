@@ -10,3 +10,7 @@
 ### Features
 - Added optional license resource and inputs used for commercial site deployments
 
+## 0.0.6 (2025-05-12)
+
+### Features
+- Added conditional logic to create VPC if vpc_id is null
