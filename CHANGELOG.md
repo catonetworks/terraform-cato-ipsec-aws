@@ -22,3 +22,20 @@
  - Version lock cato provider to 0.0.30 or greater 
  - Version lock terraform to 1.5 or greater 
  - Update ReadMe with more detail
+
+## 0.1.0 (2025-07-16)
+
+### Features
+ - Added: 
+   - Full Support for BGP 
+   - HA Tunnels (2 Tunnels built to AWS for Redunancy)
+   - Data Calls for Cato IP ID 
+   - BGP Creation on Both Cato and AWS Side
+   - Support for AWS Tags on Resources  
+
+ - Fixed: 
+   - Missing VPC Attachment for the VGW 
+
+ - Updated: 
+   - Updated Readme with additional detail around configuration of BGP 
+   - Updated Outputs 

@@ -5,7 +5,7 @@ terraform {
       version = "~> 5.0"
     }
     cato = {
-      source = "catonetworks/cato"
+      source  = "catonetworks/cato"
       version = ">= 0.0.30"
     }
   }
