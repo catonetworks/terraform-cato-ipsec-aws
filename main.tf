@@ -30,7 +30,7 @@ resource "cato_ipsec_site" "ipsec-site" {
   site_type            = var.site_type
   description          = var.site_description
   native_network_range = var.native_network_range
-  site_location        = var.site_location
+  site_location        = local.cur_site_location
   ipsec = {
     primary = {
       destination_type  = var.primary_destination_type
