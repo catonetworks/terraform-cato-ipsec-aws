@@ -3,12 +3,18 @@
 Terraform module which creates an IPsec site in the Cato Management Application (CMA), and a primary and secondary IPsec tunnel from AWS to the Cato platform.
 
 ## NOTE
+- Site_Location is now generated dynamically based on AWS Region
 - For help with finding exact sytax to match site location for city, state_name, country_name and timezone, please refer to the [cato_siteLocation data source](https://registry.terraform.io/providers/catonetworks/cato/latest/docs/data-sources/siteLocation).
 - For help with finding a license id to assign, please refer to the [cato_licensingInfo data source](https://registry.terraform.io/providers/catonetworks/cato/latest/docs/data-sources/licensingInfo).
 
 ## Usage
 
 ```hcl
+
+variable "region" {
+  default = "us-east-2"
+}
+
 provider "aws" {
   region = var.region
 }
@@ -21,7 +27,7 @@ module "ipsec-aws" {
   source = "catonetworks/ipsec-aws/cato"
   token = "xxxxxxx"
   account_id = "xxxxxxx"
-  region                        = "us-east-1"
+  region                        = var.region
   bgp_asn                       = 65000
   vpc_id                        = "vpc-123abc"
   cgw_ip                        = "11.22.33.44"
@@ -36,12 +42,7 @@ module "ipsec-aws" {
   secondary_private_site_ip     = "169.2.1.2"
   downstream_bw                 = 100
   upstream_bw                   = 100
-  site_location = {
-    city         = "New York City"
-    country_code = "US"
-    state_code   = "US-NY" ## Optional - for countries with states"
-    timezone     = "America/New_York"
-  }
+
 }
 ```
 
