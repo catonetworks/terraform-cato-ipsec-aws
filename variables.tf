@@ -1,11 +1,11 @@
-variable "bgp_asn" {
+variable "cato_bgp_asn" {
   description = "BGP ASN for the customer gateway"
   type        = number
 }
 
-variable "cgw_ip" {
-  description = "Public IP address for the customer gateway"
-  type        = string
+variable "aws_bgp_asn" {
+  description = "BGP ASN for the customer gateway"
+  type        = number
 }
 
 variable "vpc_id" {
@@ -13,6 +13,19 @@ variable "vpc_id" {
   type        = string
   default     = null
 }
+
+variable "primary_vpn_tunnel1_inside_cidr" {
+  description = "Primary VPN, Tunnel 1 Inside CIDR"
+  type        = string
+  default     = "169.254.100.0/30"
+}
+
+variable "secondary_vpn_tunnel1_inside_cidr" {
+  description = "Primary VPN, Tunnel 2 Inside CIDR"
+  type        = string
+  default     = "169.254.200.0/30"
+}
+
 
 # Cato Variables
 variable "site_name" {
@@ -71,7 +84,7 @@ variable "primary_private_site_ip" {
   type        = string
 }
 
-variable "primary_public_cato_ip_id" {
+variable "primary_public_cato_ip" {
   description = "Public IP address ID of the Cato side for the primary tunnel"
   type        = string
 }
@@ -103,7 +116,7 @@ variable "secondary_private_site_ip" {
   type        = string
 }
 
-variable "secondary_public_cato_ip_id" {
+variable "secondary_public_cato_ip" {
   description = "Public IP address ID of the Cato side for the secondary tunnel"
   type        = string
 }
@@ -147,3 +160,116 @@ variable "license_bw" {
   default     = null
 }
 
+variable "tags" {
+  description = "Map of Key-Value Tags"
+  default     = null
+  type        = map(any)
+}
+
+variable "cato_primary_bgp_peer_name" {
+  description = "Cato Primary BGP Peer Name"
+  type        = string
+  default     = null
+}
+
+variable "cato_secondary_bgp_peer_name" {
+  description = "Cato Secondary BGP Peer Name"
+  type        = string
+  default     = null
+}
+
+variable "cato_primary_bgp_default_action" {
+  description = "Cato Primary BGP Default Action"
+  type        = string
+  default     = "ACCEPT"
+}
+
+variable "cato_secondary_bgp_default_action" {
+  description = "Cato Secondary BGP Default Action"
+  type        = string
+  default     = "ACCEPT"
+}
+
+variable "cato_primary_bgp_metric" {
+  description = "Cato Primary BGP Metric"
+  type        = number
+  default     = 100
+}
+
+variable "cato_secondary_bgp_metric" {
+  description = "Cato Secondary BGP Metric"
+  type        = number
+  default     = 150
+}
+
+variable "cato_primary_bgp_advertise_all" {
+  description = "Cato Primary BGP Advertise All"
+  type        = bool
+  default     = true
+}
+
+variable "cato_secondary_bgp_advertise_all" {
+  description = "Cato Secondary BGP Advertise All"
+  type        = bool
+  default     = true
+}
+
+variable "cato_primary_bgp_advertise_default_route" {
+  description = "Cato Primary BGP Advertise Default Route"
+  type        = bool
+  default     = false
+}
+
+variable "cato_secondary_bgp_advertise_default_route" {
+  description = "Cato Secondary BGP Advertise Default Route"
+  type        = bool
+  default     = false
+}
+
+variable "cato_primary_bgp_advertise_summary_route" {
+  description = "Cato Primary BGP Advertise Summary Route"
+  type        = bool
+  default     = false
+}
+
+variable "cato_secondary_bgp_advertise_summary_route" {
+  description = "Cato Secondary BGP Advertise Summary Route"
+  type        = bool
+  default     = false
+}
+
+variable "cato_primary_bgp_bfd_transmit_interval" {
+  description = "Cato Primary BGP BFD Transmit Interval"
+  type        = number
+  default     = 1000
+}
+
+variable "cato_secondary_bgp_bfd_transmit_interval" {
+  description = "Cato Secondary BGP BFD Transmit Interval"
+  type        = number
+  default     = 1000
+}
+
+variable "cato_primary_bgp_bfd_receive_interval" {
+  description = "Cato Primary BGP BFD Receive Interval"
+  type        = number
+  default     = 1000
+}
+
+variable "cato_secondary_bgp_bfd_receive_interval" {
+  description = "Cato Secondary BGP BFD Receive Interval"
+  type        = number
+  default     = 1000
+}
+
+variable "cato_primary_bgp_bfd_multiplier" {
+  description = "Cato Primary BGP BFD Multiplier"
+  type        = number
+  default     = 5
+}
+
+variable "cato_secondary_bgp_bfd_multiplier" {
+  description = "Cato Secondary BGP BFD Multiplier"
+  type        = number
+  default     = 5
+}
